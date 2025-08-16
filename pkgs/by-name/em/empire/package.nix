@@ -33,7 +33,9 @@ python.pkgs.buildPythonApplication {
     hash = "sha256-ZyblfQXwzJI7tLHA1Nmq8UewmdC8QtRocoJGr1gs2OI=";
   };
 
-  # TODO:
+  # TODO: donut-shellcode doesn't work on darwin
+  # TODO: bcrypt is locked at 4.0.1 in pyproject.toml,
+  #  but maybe it can be updated
   dontCheckRuntimeDeps = true;
 
   build-system = with python.pkgs; [
