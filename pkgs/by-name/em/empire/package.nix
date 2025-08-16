@@ -9,6 +9,15 @@ let
   python = python312.override {
     self = python;
     packageOverrides = self: super: {
+      donut-shellcode = super.donut-shellcode.overridePythonAttrs {
+        version = "2.0.0";
+        src = fetchFromGitHub {
+          owner = "bc-security";
+          repo = "donut-shellcode";
+          rev = "b361c0d3dd125e42dfefb6ff9a6d3757d7190c14";
+          hash = "sha256-jd8drECQ7sSKx+E3toa10ljkM7R20y+tT6rlrWhg/Ak=";
+        };
+      };
     };
   };
 in
@@ -20,11 +29,12 @@ python.pkgs.buildPythonApplication {
   src = fetchFromGitHub {
     owner = "bc-security";
     repo = "empire";
-    rev = "7182a140149e94128da9a953bc964e43b8a05d5c";
-    hash = "sha256-5jBeWTDWMerNBcYHM//63pDbbBD2QMUCFoiA6G3bKYQ=";
+    rev = "d4486c17d0000c49309f58afaaec246db829db2e";
+    hash = "sha256-ZyblfQXwzJI7tLHA1Nmq8UewmdC8QtRocoJGr1gs2OI=";
   };
 
-  pythonRelaxDeps = true;
+  # TODO:
+  dontCheckRuntimeDeps = true;
 
   build-system = with python.pkgs; [
     poetry-core
@@ -55,7 +65,6 @@ python.pkgs.buildPythonApplication {
     python-socketio
     flask
     pysecretsocks
-    donut-shellcode
     python-obfuscator
     pyinstaller
     packaging
@@ -63,6 +72,8 @@ python.pkgs.buildPythonApplication {
     # Todo: Needs to be 4.0.1
     bcrypt
     requests-file
+  ] ++ lib.optionals (!stdenv.isDarwin) [
+    donut-shellcode
   ];
 
   buildInputs = [
