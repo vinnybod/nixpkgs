@@ -20,16 +20,11 @@ python.pkgs.buildPythonApplication {
   src = fetchFromGitHub {
     owner = "bc-security";
     repo = "empire";
-    rev = "fcb544ef23af527a9d576b96410eef88fccd028f";
-    hash = "sha256-jd8drECQ7sSKx+E3toa10ljkM7R20y+tT6rlrWhg/Ak=";
+    rev = "7182a140149e94128da9a953bc964e43b8a05d5c";
+    hash = "sha256-5jBeWTDWMerNBcYHM//63pDbbBD2QMUCFoiA6G3bKYQ=";
   };
 
   pythonRelaxDeps = true;
-
-  # postPatch = ''
-  #   substituteInPlace pyproject.toml \
-  #     --replace "poetry.masonry.api" "poetry.core.masonry.api"
-  # '';
 
   build-system = with python.pkgs; [
     poetry-core
