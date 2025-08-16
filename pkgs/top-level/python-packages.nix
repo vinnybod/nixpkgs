@@ -20278,6 +20278,8 @@ self: super: with self; {
 
   zlib-ng = callPackage ../development/python-modules/zlib-ng { inherit (pkgs) zlib-ng; };
 
+  zlib-wrapper = callPackage ../development/python-modules/zlib-wrapper { };
+  
   zm-py = callPackage ../development/python-modules/zm-py { };
 
   zodb = callPackage ../development/python-modules/zodb { };

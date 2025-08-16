@@ -9,17 +9,6 @@ let
   python = python312.override {
     self = python;
     packageOverrides = self: super: {
-      donut-shellcode = super.donut-shellcode.overridePythonAttrs {
-        version = "2.0.0";
-        src = fetchFromGitHub {
-          owner = "bc-security";
-          repo = "donut-shellcode";
-          rev = "b361c0d3dd125e42dfefb6ff9a6d3757d7190c14";
-          hash = "sha256-jd8drECQ7sSKx+E3toa10ljkM7R20y+tT6rlrWhg/Ak=";
-        };
-        build-system = with self; [ setuptools ];
-        pyproject = false;
-      };
     };
   };
 in
@@ -51,7 +40,7 @@ python.pkgs.buildPythonApplication {
     requests
     macholib
     pyopenssl
-    # zlib-wrapper
+    zlib-wrapper
     jinja2
     pyparsing
     pymysql
